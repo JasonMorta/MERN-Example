@@ -41,3 +41,27 @@
     transform: rotate(360deg);
   }
 }
+
+.inputEls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-header button{
+  padding: 10px;
+  font-size: x-large;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+  width: 100%;
+  margin: 10px;
+}

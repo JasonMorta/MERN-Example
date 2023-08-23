@@ -3,12 +3,13 @@
     display: block;
     min-width: 330px;
     width: 100%;
-    margin: 5px;
+    margin: auto;
     max-width: 550px;
     padding: 3px;
     margin-top: 2rem;
     font-size: initial;
     color: #000000d3;
+    font-size: x-large;
     margin-bottom: 2rem;
     background-color: #fff;
     border-radius: 10px;
@@ -20,3 +21,21 @@
     border-radius: 8px;
     background-color: #ddebf8;
   } 
+
+  .box-container input {
+    padding: 10px;
+    font-size: x-large;
+  }
+
+  .box-container button {
+    padding: 10px;
+    font-size: x-large;
+  }
+
+  .inputs, form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+  }
