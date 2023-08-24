@@ -11,8 +11,8 @@ function App() {
   const [userDoc, setUserDoc] = useState("")
 
 
-  function handleLogIn(userData) {
-    setUserDoc(userData)
+  function handleLogIn(data) {
+    setUserDoc(data)
     setShowLogIn("loggedIn");
   }
 
