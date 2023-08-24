@@ -29,8 +29,12 @@ export default function Login(props) {
         .then((response) => response.json())
         .then((data) => {
           //use data here
+         if (data !== "not found") {
           props.handleLogIn(data)
-          console.log("login",data)
+          sessionStorage.setItem("jwtToken", `${data[0]}`);
+         } else {
+          props.handleLogIn("not found") 
+         }
         })
         .catch((error) => console.error(error));
     

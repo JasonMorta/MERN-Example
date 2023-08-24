@@ -8,6 +8,7 @@ export default function Register(props) {
     email: '',
     password: '',
   });
+  const [error, setError] = useState(""); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +28,11 @@ export default function Register(props) {
         .then((response) => response.json())
         .then((data) => {
           //use data here
-          props.handleLogIn(data)
+          if (data[0] !== "!OK") {
+            props.handleLogIn(data)
+          } else {
+            setError(data[1])
+          }
           console.log(data)
         })
         .catch((error) => console.error(error));
@@ -70,6 +75,7 @@ export default function Register(props) {
                 required
               />
                 <button type="submit">Register</button>
+                <p>{error}</p>
          </form>
         </div>
       </div>
