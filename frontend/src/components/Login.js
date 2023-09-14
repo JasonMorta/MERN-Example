@@ -10,6 +10,8 @@ export default function Login(props) {
     password: '',
   });
 
+  const [notFound, setNotFound] = useState("");
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,11 +31,12 @@ export default function Login(props) {
         .then((response) => response.json())
         .then((data) => {
           //use data here
-         if (data !== "not found") {
+         if (data[1] === "not found") {
+          setNotFound("User not found")
+         } else {
           props.handleLogIn(data)
           sessionStorage.setItem("jwtToken", `${data[0]}`);
-         } else {
-          props.handleLogIn("not found") 
+          
          }
         })
         .catch((error) => console.error(error));
@@ -81,6 +84,7 @@ export default function Login(props) {
                 required
               />
         <button type="submit">Log in</button>
+        <p>{notFound}</p>
           </form>
         </div>
         

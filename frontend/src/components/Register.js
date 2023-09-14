@@ -30,6 +30,7 @@ export default function Register(props) {
           //use data here
           if (data[0] !== "!OK") {
             props.handleLogIn(data)
+            sessionStorage.setItem("jwtToken",data[0])
           } else {
             setError(data[1])
           }
