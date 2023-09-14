@@ -20,7 +20,7 @@ app.listen(PORT, (err) => {
 
 
 //Connect to MongoDB
-const URL = "mongodb+srv://jasonmortadev:mXq4LicOoQh4N8tu@cluster0.ddtph59.mongodb.net/mernusers?retryWrites=true&w=majority"
+const URL = "mongodb+srv://jasonmortadev:mXq4LicOoQh4N8tu@cluster0.ddtph59.mongodb.net/ 
 main().catch(err => console.log(err));
 async function main() {
     await mongoose.connect(URL);
