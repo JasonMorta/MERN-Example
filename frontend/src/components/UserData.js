@@ -8,7 +8,7 @@ export default function UserData(props) {
   //Delete
   async function deleteItem(todo_item, index) {
     
-    await fetch("/delete", {
+    await fetch("https://mernexample.onrender.com/delete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

@@ -10,6 +10,15 @@ export default function Login(props) {
     password: '',
   });
 
+  /* 
+    "proxy": "https://mernexample.onrender.com",
+  The "proxy" field in your package.json file is 
+  used for specifying a proxy server to use during development 
+  when you want to make requests to an external API from your 
+  frontend without running into cross-origin issues. 
+  It's typically used in local development environments.
+  */
+
   const [notFound, setNotFound] = useState("");
 
 
@@ -17,7 +26,7 @@ export default function Login(props) {
     e.preventDefault();
     
     // LOGIN USER
-      await fetch("/login", {
+      await fetch("https://mernexample.onrender.com/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

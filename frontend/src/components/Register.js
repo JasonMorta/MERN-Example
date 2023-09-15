@@ -14,7 +14,7 @@ export default function Register(props) {
     e.preventDefault();
     
     // REGISTER USER
-      await fetch("/register", {
+      await fetch("https://mernexample.onrender.com/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
