@@ -24,7 +24,6 @@ export default function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('user', user)
     // LOGIN USER
       await fetch("https://mernexample.onrender.com/login", {
         method: "POST",
