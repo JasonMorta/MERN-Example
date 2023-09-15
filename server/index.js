@@ -1,11 +1,20 @@
 const express = require('express');
 require('dotenv').config()
+const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken")
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
+// Allow requests from a specific origin (e.g., localhost during development)
+const corsOptions = {
+    origin: "https://mernexample-frontend.onrender.com/", // Change this to your frontend's URL
+  };
+  
+  app.use(cors(corsOptions));
 
 
 const PORT = process.env.PORT || 8080;

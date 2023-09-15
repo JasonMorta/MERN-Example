@@ -21,33 +21,39 @@ export default function Login(props) {
 
   const [notFound, setNotFound] = useState("");
 
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     // LOGIN USER
-      await fetch("https://mernexample.onrender.com/login", {
+    try {
+      const response = await fetch("https://mernexample.onrender.com/login", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-        
-            email: user.email,
-        
+          email: user.email,
+          username: user.username,
+          password: user.password
         }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          //use data here
-         if (data[1] === "not found") {
-          setNotFound("User not found")
-         } else {
-          props.handleLogIn(data)
-          sessionStorage.setItem("jwtToken", `${data[0]}`);
-          
-         }
-        })
-        .catch((error) => console.table(error));
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+  
+      if (data[1] === "not found") {
+        setNotFound("User not found");
+      } else {
+        props.handleLogIn(data);
+        sessionStorage.setItem("jwtToken", `${data[0]}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
     
   };
 
