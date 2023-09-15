@@ -55,7 +55,7 @@ app.post("/register", inappropriateMiddleware, async (req, res) => {
         payload = {
             'email': req.body.email
         }
-        let token = jwt.sign(JSON.stringify(payload), "mernapp", {
+        let token = jwt.sign(JSON.stringify(payload), process.env.JWT_KEY, {
             algorithm: 'HS256'
         });
 
@@ -82,18 +82,18 @@ app.post("/register", inappropriateMiddleware, async (req, res) => {
 
 //! http://localhost:8080/login
 app.post("/login", async (req, res) => {
-    console.log('req', req.query)
+    console.log('req', req.body)
 
     //Create the JWT token
     payload = {
-        'email': req.query.email
+        'email': req.body.email
     }
-    let token = jwt.sign(JSON.stringify(payload), "mernapp", {
+    let token = jwt.sign(JSON.stringify(payload), process.env.JWT_KEY, {
         algorithm: 'HS256'
     });
 
     // req.body.email
-    const foundUser = await userModel.findOne({ email: req.query.email });
+    const foundUser = await userModel.findOne({ email: req.body.email });
 
     if (foundUser === null) {
         res.json("not found")
@@ -139,7 +139,7 @@ function JWTAuth(req, res, next) {
 
     try {
         const token = req.headers.auth;
-        const verify = jwt.verify(token, "mernapp");
+        const verify = jwt.verify(token, process.env.JWT_KEY);
         
         // Token verification successful, you can proceed with the verified data
         console.log('Token verified:', verify);
