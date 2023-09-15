@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 const app = express();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken")
@@ -20,7 +21,7 @@ app.listen(PORT, (err) => {
 
 
 //Connect to MongoDB
-const URL = "mongodb+srv://jasonmortadev:mXq4LicOoQh4N8tu@cluster0.ddtph59.mongodb.net/ 
+const URL = process.env.MONGODB_URL;
 main().catch(err => console.log(err));
 async function main() {
     await mongoose.connect(URL);
@@ -81,18 +82,18 @@ app.post("/register", inappropriateMiddleware, async (req, res) => {
 
 //! http://localhost:8080/login
 app.post("/login", async (req, res) => {
-    console.log('req', req.body)
+    console.log('req', req.query)
 
     //Create the JWT token
     payload = {
-        'email': req.body.email
+        'email': req.query.email
     }
     let token = jwt.sign(JSON.stringify(payload), "mernapp", {
         algorithm: 'HS256'
     });
 
     // req.body.email
-    const foundUser = await userModel.findOne({ email: req.body.email });
+    const foundUser = await userModel.findOne({ email: req.query.email });
 
     if (foundUser === null) {
         res.json("not found")

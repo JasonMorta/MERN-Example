@@ -27,7 +27,6 @@ export default function UserData(props) {
         } else {
           setTodo(data[1].todo)
         }
-  
       })
     
       .catch((error) => {
