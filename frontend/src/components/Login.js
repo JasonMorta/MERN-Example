@@ -24,7 +24,7 @@ export default function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    console.log('user', user)
     // LOGIN USER
       await fetch("https://mernexample.onrender.com/login", {
         method: "POST",
@@ -32,9 +32,9 @@ export default function Login(props) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            username: user.username,
+        
             email: user.email,
-            password: user.password
+        
         }),
       })
         .then((response) => response.json())
@@ -48,7 +48,7 @@ export default function Login(props) {
           
          }
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.table(error));
     
   };
 

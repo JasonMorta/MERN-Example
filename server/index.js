@@ -41,9 +41,9 @@ const userModel = mongoose.model('users', userSchema);
 
 //API endpoint
 //http://localhost:8080/
-app.get("/", (req, res) => {
-    res.send('<h1>Hello</h1>');
-})
+// app.get("/", (req, res) => {
+//     res.send('<h1>Hello</h1>');
+// })
 
 //! http://localhost:8080/register
 app.post("/register", inappropriateMiddleware, async (req, res) => {
