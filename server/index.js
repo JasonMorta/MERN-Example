@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 // Allow requests from a specific origin (e.g., localhost during development)
 const corsOptions = {
-    origin: "https://mernexample-frontend.onrender.com/", // Change this to your frontend's URL
+    origin: process.env.CLIENT_URL, // Change this to your frontend's URL
   };
   
   app.use(cors(corsOptions));
