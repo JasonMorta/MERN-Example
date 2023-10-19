@@ -123,6 +123,15 @@ app.delete("/delete", JWTAuth, async (req, res) => {
     console.log("to-do deleted")
 })
 
+//! http://localhost:8080/add
+app.put("/add", JWTAuth, async (req, res) => {
+
+    const query = { _id: req.body.id };
+    const added = await userModel.findOneAndUpdate(query, { $push: { todo: req.body.todo_item } }, { new: true })
+    res.send([" ", added])
+    console.log("to-do added")
+})
+
 
 //! Middleware
 function inappropriateMiddleware(req, res, next) {
