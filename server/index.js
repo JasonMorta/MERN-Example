@@ -94,24 +94,24 @@ app.post("/login", async (req, res) => {
     console.log('req', req.body)
 
     //Create the JWT token
-    payload = {
-        'email': req.body.email
-    }
-    let token = jwt.sign(JSON.stringify(payload), process.env.JWT_KEY, {
-        algorithm: 'HS256'
-    });
+    // payload = {
+    //     'email': req.body.email
+    // }
+    // let token = jwt.sign(JSON.stringify(payload), process.env.JWT_KEY, {
+    //     algorithm: 'HS256'
+    // });
 
     // req.body.email
-    const foundUser = await userModel.findOne({ email: req.body.email });
+    // const foundUser = await userModel.findOne({ email: req.body.email });
 
-    if (foundUser === null) {
-        res.json("not found")
-        console.log("user not found")
+    // if (foundUser === null) {
+    //     res.json("not found")
+    //     console.log("user not found")
 
-    } else {
-        res.send([token, foundUser])
-        console.log("user logged in")
-    }
+    // } else {
+    //     res.send([token, foundUser])
+    //     console.log("user logged in")
+    // }
 })
 
 //! http://localhost:8080/delete
