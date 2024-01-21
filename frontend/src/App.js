@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { useState } from 'react';
 import UserData from './components/UserData';
+import ConfigRoute from './components/ConfigRoute';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
         </div>
 
       </header>
+      < ConfigRoute />
 
       <div className='inputEls'>
         {showLogIn === "true" ?
