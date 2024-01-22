@@ -11,10 +11,10 @@ app.use(bodyParser.json());
 
 // Allow requests from a specific origin (e.g., localhost during development)
 const corsOptions = {
-    origin: "*", // Change this to your frontend's URL
-  };
-  
-  app.use(cors(corsOptions));
+    origin: "*", // "*/any": Change this to your frontend's URL
+};
+
+app.use(cors(corsOptions));
 
 
 const PORT = process.env.PORT || 8080;
@@ -132,6 +132,26 @@ app.put("/add", JWTAuth, async (req, res) => {
     console.log("to-do added")
 })
 
+app.get('/config', async (req, res) => {
+
+  
+    console.log("config sent")
+
+    await fetch("https://datafeed.jpmarketstv.co.za/config", {
+        method: 'GET',
+        headers: {
+            "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiWjBGQlFVRkJRbXh3Y205RlNUWkhNM0pCV0VSQ1dXaFFOVzQzVlVwR2FtWklhVVpTWm1KcmFtNVVjRU5yUW01WmIyOTFTVUpRVVdwbWVYUmhURTVIYnpoNlpUWm5RWHA1Wm5rMmVIb3pjRlZIWmxWdU1ITnRkV3B6ZDB4R2VsVm5RVFpVUTFSaVZHUjZZbXBaWVVWcVNHWnhNbmRPVkc0dGJHTmpUVWx0UlVaT1ZITjFZVlYzY0U1eE9VWk5kMFZJU1VodlRra3lhV0oxUmxFMFZqbHdYMjR0Y0dwMmMwa3llblZCTVVzMFJsbE5SRGx3TlhGYVVVWklja0ZEVTFoTWVrSnlYM0V3T0dJMVpXSnlSMDlqZHpsSGVYQnRhRWgyYm5oelMzcExZMU5FVVQwOSJ9.vaNt8LeTBQjd2IR4LJDtu8A3YfZCR5ZTNGeCmTe3Ktk",
+            "TestingHeaders": "an example"
+        },
+    })
+        .then(response => response.text())
+        .then(result => {
+            res.send(result)
+        })
+        .catch(error => console.log('error', error));
+
+});
+
 
 //! Middleware
 function inappropriateMiddleware(req, res, next) {
@@ -158,19 +178,19 @@ function JWTAuth(req, res, next) {
     try {
         const token = req.headers.auth;
         const verify = jwt.verify(token, process.env.JWT_KEY);
-        
+
         // Token verification successful, you can proceed with the verified data
         console.log('Token verified:', verify);
         next()
-      } catch (error) {
+    } catch (error) {
         // Token verification failed, handle the error
         console.error('Token verification error:', error.message);
         // You can also return an appropriate response to the client indicating the error
         res.send(["", error.message]);
-    
-      }
 
-   
+    }
+
+
 }
 
 
